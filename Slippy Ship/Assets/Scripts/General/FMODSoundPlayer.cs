@@ -55,7 +55,7 @@ public class FMODSoundPlayer
         
             eventInstance.setCallback(EventStoppedCallbackDelegate, EVENT_CALLBACK_TYPE.SOUND_STOPPED);
         
-            RuntimeManager.AttachInstanceToGameObject(eventInstance, owner);
+            RuntimeManager.AttachInstanceToGameObject(eventInstance, owner.gameObject);
         
             eventInstance.start();
             
