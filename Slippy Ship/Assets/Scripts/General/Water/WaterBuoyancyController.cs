@@ -4,6 +4,8 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class WaterBuoyancyController : MonoBehaviour
 {
+    public static WaterBuoyancyController Instance { get; private set; }
+    
     const float EPSILON = 0.02f;
 
     [Header("Water")]
@@ -25,6 +27,14 @@ public class WaterBuoyancyController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        
         _sp.error = 0.01f;
         _sp.maxIterations = 8;
         _sp.includeDeformation = true;
@@ -39,20 +49,28 @@ public class WaterBuoyancyController : MonoBehaviour
         }
     }
 
-    void ApplyBuoyancy(BuoyancyPoint bp)
+    public bool IsSubmerged(Vector3 position, out float depth)
     {
+        depth = 0f;
+        
         _sp.startPositionWS = _sr.candidateLocationWS;
-        _sp.targetPositionWS = bp.transform.position;
+        _sp.targetPositionWS = position;
 
         if (!targetSurface.ProjectPointOnWaterSurface(_sp, out _sr))
-            return;
+            return false;
 
         float waterY = _sr.projectedPositionWS.y;
-        Vector3 pos = bp.transform.position;
 
-        float depth = waterY - pos.y;
-        if (depth < EPSILON)
-            return; // not submerged
+        depth = waterY - position.y;
+        return depth >= EPSILON;
+    }
+
+    void ApplyBuoyancy(BuoyancyPoint bp)
+    {
+        if (!IsSubmerged(bp.transform.position, out float depth))
+        {
+            return;
+        }
 
         float submergedRatio = Mathf.Clamp01(depth / maxSubmergeDepth);
 
