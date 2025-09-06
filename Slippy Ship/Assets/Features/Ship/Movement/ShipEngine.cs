@@ -7,10 +7,16 @@ public class ShipEngine : MonoBehaviour
     [SerializeField] float maxTurnAngle = 45f;
     [SerializeField] float adjustThrottleSpeed = 1f;
     [SerializeField] float adjustSteeringSpeed = 1f;
+    [SerializeField] float passiveSteeringReturnSpeed = 3f;
     
     [SerializeField, Range(-1, 1)] float currentThrottle = 0f;
     [SerializeField, Range(-1, 1)] float currentSteerDirection = 0f;
-    
+
+    void Update()
+    {
+        currentSteerDirection = Mathf.MoveTowards(currentSteerDirection, 0, passiveSteeringReturnSpeed * Time.deltaTime);
+    }
+
     void FixedUpdate()
     {
         if (!WaterBuoyancyController.Instance.IsSubmerged(transform.position, out float depth)) return;
@@ -32,7 +38,7 @@ public class ShipEngine : MonoBehaviour
     
     public void AdjustSteering(float direction, float deltaTime)
     {
-        currentSteerDirection += direction * adjustSteeringSpeed * deltaTime;
+        currentSteerDirection += direction * (adjustSteeringSpeed + passiveSteeringReturnSpeed) * deltaTime;
         currentSteerDirection = Mathf.Clamp(currentSteerDirection, -1, 1);
     }
 

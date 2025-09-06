@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 234631410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.51, y: -1.71, z: -1.66}
+  m_LocalPosition: {x: 5.51, y: -1.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -405,9 +405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 1796995993}
   maxForce: 20
-  maxTurnAngle: 45
+  maxTurnAngle: 15
   adjustThrottleSpeed: 1
   adjustSteeringSpeed: 1
+  passiveSteeringReturnSpeed: 1
   currentThrottle: 0
   currentSteerDirection: 0
 --- !u!1 &424868865
@@ -956,8 +957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSurface: {fileID: 1012425473}
-  waterDensity: 250
-  maxSubmergeDepth: 10
+  waterDensity: 100
+  maxSubmergeDepth: 25
   linearDrag: 10
   angularDrag: 50
   uprightTorqueStrength: 1
@@ -1550,6 +1551,7 @@ GameObject:
   - component: {fileID: 1796995995}
   - component: {fileID: 1796995994}
   - component: {fileID: 1796995993}
+  - component: {fileID: 1796995996}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -1618,11 +1620,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1823688467}
   - {fileID: 1784144761}
   - {fileID: 424868866}
   - {fileID: 234631411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1796995996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796995992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e2b6c66f15d2b43b9482e73e71c406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: {fileID: 234631412}
 --- !u!1 &1823688464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,13 +1717,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 4.99, y: 2.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1796995995}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1823688468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,7 +2176,6 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1823688467}
   - {fileID: 157207114}
   - {fileID: 432432461}
   - {fileID: 2013410475}
