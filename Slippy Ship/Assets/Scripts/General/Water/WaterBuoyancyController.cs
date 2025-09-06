@@ -57,7 +57,7 @@ public class WaterBuoyancyController : MonoBehaviour
         float submergedRatio = Mathf.Clamp01(depth / maxSubmergeDepth);
 
         float displacedMass = submergedRatio * bp.EstimatedDisplacementVolume; 
-        Vector3 buoyantForce = Vector3.up * (displacedMass * waterDensity);
+        Vector3 buoyantForce = _sr.normalWS * (displacedMass * waterDensity);
 
         bp.AddForce(buoyantForce, ForceMode.Force);
 
