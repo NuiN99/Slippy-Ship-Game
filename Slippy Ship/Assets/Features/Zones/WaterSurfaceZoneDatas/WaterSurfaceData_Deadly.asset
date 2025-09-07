@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterSurfaceData_Deadly
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
-    timeMultiplier: 1
+    timeMultiplier: 2
     distantWindSpeed: 250
     currentSpeed: 0
     secondBandAmplitudeDimmer: 1
