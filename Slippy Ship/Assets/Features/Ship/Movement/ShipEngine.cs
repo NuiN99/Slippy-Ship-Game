@@ -4,42 +4,45 @@ public class ShipEngine : MonoBehaviour
 {
     [SerializeField] Rigidbody parentRB;
     [SerializeField] float maxForce = 20f;
+    [SerializeField] float engineWeight = 5f;
     [SerializeField] float maxTurnAngle = 45f;
     [SerializeField] float adjustThrottleSpeed = 1f;
     [SerializeField] float adjustSteeringSpeed = 1f;
     [SerializeField] float passiveSteeringReturnSpeed = 3f;
-    
-    [SerializeField, Range(-1, 1)] float currentThrottle = 0f;
-    [SerializeField, Range(-1, 1)] float currentSteerDirection = 0f;
+
+    public float CurrentThrottle { get; private set; }
+    public float CurrentSteerDirection { get; private set; }
 
     void Update()
     {
-        currentSteerDirection = Mathf.MoveTowards(currentSteerDirection, 0, passiveSteeringReturnSpeed * Time.deltaTime);
+        CurrentSteerDirection = Mathf.MoveTowards(CurrentSteerDirection, 0, passiveSteeringReturnSpeed * Time.deltaTime);
     }
 
     void FixedUpdate()
     {
+        parentRB.AddForceAtPosition(Vector3.down * engineWeight, transform.position, ForceMode.Force);
+        
         if (!WaterBuoyancyController.Instance.IsSubmerged(transform.position, out float depth)) return;
         ApplyEngineForce();
     }
 
     void ApplyEngineForce()
     {
-        float force = currentThrottle * maxForce;
-        Vector3 dir = Quaternion.AngleAxis(maxTurnAngle * -currentSteerDirection, transform.up) * transform.forward;
+        float force = CurrentThrottle * maxForce;
+        Vector3 dir = Quaternion.AngleAxis(maxTurnAngle * -CurrentSteerDirection, transform.up) * transform.forward;
         parentRB.AddForceAtPosition(dir * force, transform.position, ForceMode.Force);
     }
 
     public void AdjustThrottle(float direction, float deltaTime)
     {
-        currentThrottle += direction * adjustThrottleSpeed * deltaTime;
-        currentThrottle = Mathf.Clamp(currentThrottle, -1, 1);
+        CurrentThrottle += direction * adjustThrottleSpeed * deltaTime;
+        CurrentThrottle = Mathf.Clamp(CurrentThrottle, -1, 1);
     }
     
     public void AdjustSteering(float direction, float deltaTime)
     {
-        currentSteerDirection += direction * (adjustSteeringSpeed + passiveSteeringReturnSpeed) * deltaTime;
-        currentSteerDirection = Mathf.Clamp(currentSteerDirection, -1, 1);
+        CurrentSteerDirection += direction * (adjustSteeringSpeed + passiveSteeringReturnSpeed) * deltaTime;
+        CurrentSteerDirection = Mathf.Clamp(CurrentSteerDirection, -1, 1);
     }
 
     void OnDrawGizmos()
