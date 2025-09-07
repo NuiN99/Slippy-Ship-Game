@@ -5462,6 +5462,7 @@ MonoBehaviour:
   hoverMaterial: {fileID: 2100000, guid: 3b51feb05bff1ec43bd86f78761e3d1a, type: 2}
   renderers:
   - {fileID: 843806221}
+  boatRB: {fileID: 1796995993}
   fishSpawnPoint: {fileID: 1861781703}
   stats:
     onHookDuration: 1
