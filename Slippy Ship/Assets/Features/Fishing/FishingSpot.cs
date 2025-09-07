@@ -1,3 +1,4 @@
+using NuiN.SpleenTween;
 using UnityEngine;
 
 public class FishingSpot : MonoBehaviour
@@ -41,7 +42,16 @@ public class FishingSpot : MonoBehaviour
 
             bird.localPosition = newLocalPos;
             _initialPositions[i] = newLocalPos;
+            
+            Vector3 centerToBird = bird.localPosition;
+            Vector3 tangent = Vector3.Cross(Vector3.up, centerToBird).normalized;
+            bird.localRotation = Quaternion.LookRotation(tangent, Vector3.up);
         }
+    }
+
+    void Start()
+    {
+        SpleenTween.PosAxis(transform, Axis.y, 250, 0f, 2.5f).SetEase(Ease.OutCubic);
     }
 
     void OnEnable()
@@ -60,6 +70,13 @@ public class FishingSpot : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        if (_fishLeft <= 0)
+        {
+            _playerIsInZone = false;
+            FishingManager.Instance.SetIsInFishingSpot(false);
+            return;
+        }
+        
         _playerIsInZone = true;
         FishingManager.Instance.SetIsInFishingSpot(true);
     }
@@ -94,14 +111,21 @@ public class FishingSpot : MonoBehaviour
 
         if (_fishLeft <= 0)
         {
-            FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);
-            Destroy(gameObject);
+            TweenAndSpawnNew();
         }
     }
 
     void OnZoneChanged(OceanZone newZone)
     {
-        FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);
-        Destroy(gameObject);
+        TweenAndSpawnNew();
+    }
+
+    void TweenAndSpawnNew()
+    {
+        SpleenTween.AddPosAxis(transform, Axis.y, 250f, 5f).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);
+            Destroy(gameObject);
+        });
     }
 }

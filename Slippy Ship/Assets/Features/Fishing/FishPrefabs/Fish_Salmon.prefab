@@ -47,10 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c339b37fbf747eeae3306fef982a8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverMaterial: {fileID: 2100000, guid: 3b51feb05bff1ec43bd86f78761e3d1a, type: 2}
-  renderers:
-  - {fileID: 6981432299867427019}
-  - {fileID: 7015505239568808466}
   <SellAmount>k__BackingField: 1
   rb: {fileID: 3902146753893848195}
   flopDuration:
@@ -94,7 +90,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3216066660442824586}
   serializedVersion: 4
-  m_Mass: 0.01
+  m_Mass: 0.005
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

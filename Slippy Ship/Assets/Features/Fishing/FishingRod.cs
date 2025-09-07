@@ -11,22 +11,30 @@ public class FishingRod : BaseInteractable
     {
         public float onHookDuration;
         public FloatRange catchInterval;
+        public int minFish;
+        public int maxFish;
 
-        public Stats(float onHookDuration, FloatRange catchInterval)
+        public Stats(float onHookDuration, FloatRange catchInterval, int minFish, int maxFish)
         {
             this.onHookDuration = onHookDuration;
             this.catchInterval = catchInterval;
+            this.minFish = minFish;
+            this.maxFish = maxFish;
         }
     }
 
     public override bool IsInteractable => _fishIsHooked;
 
     [SerializeField] Rigidbody boatRB;
+    [SerializeField] GameObject hookedObj;
     [SerializeField] Transform fishSpawnPoint;
+    [SerializeField] float normalFishRotZ;
+    [SerializeField] float hookedFishRotZ;
     [SerializeField] Stats stats;
         
     Coroutine _fishingRoutine;
     bool _fishIsHooked;
+    float _initialRotZ;
 
     protected override void Awake()
     {
@@ -37,6 +45,8 @@ public class FishingRod : BaseInteractable
     public void Initialize()
     {
         _fishIsHooked = false;
+        hookedObj.SetActive(false);
+        transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
         
         this.StopCoroutineSafe(_fishingRoutine);
         _fishingRoutine = StartCoroutine(FishingRoutine());
@@ -54,8 +64,14 @@ public class FishingRod : BaseInteractable
             
             yield return new WaitForSeconds(stats.catchInterval.Random());
             _fishIsHooked = true;
+            transform.localRotation = transform.localRotation.With(z: hookedFishRotZ);
+            hookedObj.SetActive(true);
+            
             yield return new WaitForSeconds(stats.onHookDuration);
             _fishIsHooked = false;
+            hookedObj.SetActive(false);
+            transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
+            
             GameEvents.InvokeFishDepleted();
         }
     }
@@ -65,7 +81,9 @@ public class FishingRod : BaseInteractable
     {
         base.Interact();
         _fishIsHooked = false;
+        hookedObj.SetActive(false);
         SpawnFish();
+        transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
         
         this.StopCoroutineSafe(_fishingRoutine);
         _fishingRoutine = StartCoroutine(FishingRoutine());
@@ -73,10 +91,15 @@ public class FishingRod : BaseInteractable
 
     void SpawnFish()
     {
-        Fish fishPrefab = FishingManager.Instance.GetCurrentZoneFishPrefab();
-        Fish spawnedFish = Instantiate(fishPrefab, fishSpawnPoint.position, Random.rotation);
+        int numFish = Random.Range(stats.minFish, stats.maxFish + 1);
+
+        for (int i = 0; i < numFish; i++)
+        {
+            Fish fishPrefab = FishingManager.Instance.GetCurrentZoneFishPrefab();
+            Fish spawnedFish = Instantiate(fishPrefab, fishSpawnPoint.position, Random.rotation);
+            spawnedFish.SetVelocity(boatRB.linearVelocity + transform.up * 5f);
+        }
         
-        spawnedFish.SetVelocity(boatRB != null ? boatRB.linearVelocity : Vector3.zero);
         GameEvents.InvokeFishDepleted();
     }
 }

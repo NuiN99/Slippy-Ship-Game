@@ -23,7 +23,7 @@ public class BuoyancyPoint : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
+        Gizmos.color = Color.cyan.WithAlpha(0.9f);
         Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }

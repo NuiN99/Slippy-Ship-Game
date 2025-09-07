@@ -159,15 +159,20 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 0
     - _DstBlend: 10
+    - _DstBlend2: 10
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
+    - _ExcludeFromTUAndAA: 0
     - _FoamAmount: 2
     - _FoamCutoff: 1
     - _FoamSpeed: 0.1
     - _Foam_Scale: 80
     - _GeneralWaveSpeed: 0.1
     - _Intensity: 1
+    - _MaterialID: 1
+    - _MaterialTypeMask: 2
     - _OpaqueCullMode: 2
+    - _PerPixelSorting: 0
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RayTracing: 0
@@ -184,16 +189,17 @@ Material:
     - _StencilRefGBuffer: 2
     - _StencilRefMV: 32
     - _StencilWriteMask: 6
-    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDepth: 9
     - _StencilWriteMaskDistortionVec: 4
-    - _StencilWriteMaskGBuffer: 14
-    - _StencilWriteMaskMV: 40
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
     - _SupportDecals: 1
     - _Surface: 1
     - _SurfaceType: 1
     - _Tiling1: 3
     - _Tiling2: 10.6
     - _TilingWave: 10
+    - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -203,7 +209,7 @@ Material:
     - _TransparentZWrite: 1
     - _UseShadowThreshold: 0
     - _WaterTransparency: 1
-    - _WaveHeight: 5
+    - _WaveHeight: 1721.3
     - _WaveSpeedA: 0.5
     - _WaveSpeedB: 0.5
     - _ZTest: 4

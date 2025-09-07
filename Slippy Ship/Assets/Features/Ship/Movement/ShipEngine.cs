@@ -25,6 +25,7 @@ public class ShipEngine : MonoBehaviour
         
         if (!WaterBuoyancyController.Instance.IsSubmerged(transform.position, out float depth)) return;
         ApplyEngineForce();
+        ApplySteeringTorque();
     }
 
     void ApplyEngineForce()
@@ -32,6 +33,20 @@ public class ShipEngine : MonoBehaviour
         float force = CurrentThrottle * maxForce;
         Vector3 dir = Quaternion.AngleAxis(maxTurnAngle * -CurrentSteerDirection, transform.up) * transform.forward;
         parentRB.AddForceAtPosition(dir * force, transform.position, ForceMode.Force);
+    }
+    
+    void ApplySteeringTorque()
+    {
+        if (Mathf.Approximately(CurrentSteerDirection, 0f)) return;
+
+        float torqueForce = maxForce * 0.75f * CurrentSteerDirection * (1 - Mathf.Abs(CurrentThrottle * 0.5f));
+        const float leverArm = 2f;
+
+        Vector3 leftPoint = transform.position - transform.right * leverArm;
+        Vector3 rightPoint = transform.position + transform.right * leverArm;
+
+        parentRB.AddForceAtPosition(transform.forward * torqueForce, leftPoint, ForceMode.Force);
+        parentRB.AddForceAtPosition(-transform.forward * torqueForce, rightPoint, ForceMode.Force);
     }
 
     public void AdjustThrottle(float direction, float deltaTime)

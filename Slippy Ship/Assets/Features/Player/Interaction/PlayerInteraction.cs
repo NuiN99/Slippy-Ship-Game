@@ -35,11 +35,10 @@ public class PlayerInteraction : MonoBehaviour
         PlayerInputManager.Controls.Actions.Interact.performed -= OnInteractPressed_Callback;
     }
 
-    void Update()
+    void LateUpdate()
     {
         IInteractable detectedInteractable = DetectInteractable();
         if (detectedInteractable == _hoveredInteractable) return;
-        
         _hoveredInteractable?.StopHover();
         _hoveredInteractable = detectedInteractable;
         _hoveredInteractable?.StartHover();
@@ -58,11 +57,6 @@ public class PlayerInteraction : MonoBehaviour
         foreach (RaycastHit hit in hits)
         {
             if (!hit.collider.TryGetComponent(out IInteractable interactable) || !interactable.IsInteractable) continue;
-            if (Physics.Raycast(cameraTransform.position, VectorUtils.Direction(cameraTransform.position, hit.collider.transform.position), out RaycastHit losCheckHit))
-            {
-                // hit something in line of sight (los)
-                if(losCheckHit.collider != hit.collider) continue;
-            }
             
             float dist = (hit.point - cameraTransform.position).sqrMagnitude;
             if (dist >= closestDistance) continue;
@@ -72,14 +66,5 @@ public class PlayerInteraction : MonoBehaviour
         }
         
         return closestInteractable;
-    }
-    
-    void OnDrawGizmos()
-    {
-        Vector3 start = cameraTransform.position;
-        Vector3 end = cameraTransform.position + cameraTransform.forward * interactRange;
-        Gizmos.DrawWireSphere(start, interactRadius);
-        Gizmos.DrawWireSphere(end, interactRadius);
-        Gizmos.DrawLine(start, end);
     }
 }
