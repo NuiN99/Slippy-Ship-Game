@@ -53,11 +53,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b38f4506-4401-4231-8488-6948bfcb1c37"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""WS"",
                     ""id"": ""5a5181cb-b083-489e-a16c-84cad0fce622"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -90,7 +99,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""Arrows"",
+                    ""id"": ""709d04d9-f9ab-433c-92dc-f12223d0481f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipThrottle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""6d1c9c91-3378-4804-85cb-e980a75726e5"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipThrottle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0fa8a067-905d-4a4b-817c-974774cde486"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipThrottle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""AD"",
                     ""id"": ""315531f9-b631-4234-a405-da6835e1b4e9"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -123,6 +165,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Arrows"",
+                    ""id"": ""9bb27f0c-b7af-4765-be5b-45b80e9a5c47"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipSteering"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""d91aafc4-96ac-4389-8acf-a503b06fbf99"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipSteering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1917cfac-c110-4962-ac13-6da8654dae6e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShipSteering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""da8a93c2-c4e4-4374-818b-33efea6f64a1"",
                     ""path"": ""<Mouse>/delta"",
@@ -130,6 +205,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""513e73b0-cd58-4aa9-b734-910a04b77c08"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -143,6 +229,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Actions_Camera = m_Actions.FindAction("Camera", throwIfNotFound: true);
         m_Actions_ShipThrottle = m_Actions.FindAction("ShipThrottle", throwIfNotFound: true);
         m_Actions_ShipSteering = m_Actions.FindAction("ShipSteering", throwIfNotFound: true);
+        m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -212,6 +299,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_Camera;
     private readonly InputAction m_Actions_ShipThrottle;
     private readonly InputAction m_Actions_ShipSteering;
+    private readonly InputAction m_Actions_Interact;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -219,6 +307,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Actions_Camera;
         public InputAction @ShipThrottle => m_Wrapper.m_Actions_ShipThrottle;
         public InputAction @ShipSteering => m_Wrapper.m_Actions_ShipSteering;
+        public InputAction @Interact => m_Wrapper.m_Actions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -237,6 +326,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ShipSteering.started += instance.OnShipSteering;
             @ShipSteering.performed += instance.OnShipSteering;
             @ShipSteering.canceled += instance.OnShipSteering;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -250,6 +342,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ShipSteering.started -= instance.OnShipSteering;
             @ShipSteering.performed -= instance.OnShipSteering;
             @ShipSteering.canceled -= instance.OnShipSteering;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -272,5 +367,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnShipThrottle(InputAction.CallbackContext context);
         void OnShipSteering(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
