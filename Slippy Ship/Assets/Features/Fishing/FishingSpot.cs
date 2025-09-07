@@ -47,11 +47,14 @@ public class FishingSpot : MonoBehaviour
     void OnEnable()
     {
         GameEvents.OnFishDepleted += DepleteFish;
+        GameEvents.OnZoneChanged += OnZoneChanged;
     }
 
     void OnDisable()
     {
         GameEvents.OnFishDepleted -= DepleteFish;
+        GameEvents.OnZoneChanged -= OnZoneChanged;
+        
         FishingManager.Instance.SetIsInFishingSpot(false);
     }
 
@@ -91,8 +94,14 @@ public class FishingSpot : MonoBehaviour
 
         if (_fishLeft <= 0)
         {
-            FishingManager.Instance.SpawnNewFishingSpot();
+            FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);
             Destroy(gameObject);
         }
+    }
+
+    void OnZoneChanged(OceanZone newZone)
+    {
+        FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);
+        Destroy(gameObject);
     }
 }

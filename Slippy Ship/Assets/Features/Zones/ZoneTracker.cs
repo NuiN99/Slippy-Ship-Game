@@ -39,6 +39,11 @@ public class ZoneTracker : MonoBehaviour
         Debug.Log("Changed zone: " + newZone);
     }
 
+    public Transform GetCurrentZoneTransform()
+    {
+        return zoneVolumes[CurrentZone].transform;
+    }
+
     void OnDrawGizmos()
     {
         foreach (OceanZone value in Enum.GetValues(typeof(OceanZone)))
