@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f7b5f1bdaf9cb3f41a9df4ef4bf788da
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259090
+  packageName: Stylized Pirate Port City (Modular)
+  packageVersion: 1.0
+  assetPath: Assets/LeartesStudios/Art/Animations/DynamicCamera03.controller
+  uploadId: 607776
