@@ -28,6 +28,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""9c2640db-919d-4d0b-9f33-065d820a08c6"",
             ""actions"": [
                 {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""d6cc3da0-c795-455c-82f9-a6c7d0719c20"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""ShipThrottle"",
                     ""type"": ""Value"",
                     ""id"": ""d65b3a7e-5311-4b08-a1bc-9491722983c5"",
@@ -112,6 +121,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ShipSteering"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da8a93c2-c4e4-4374-818b-33efea6f64a1"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -120,6 +140,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
+        m_Actions_Camera = m_Actions.FindAction("Camera", throwIfNotFound: true);
         m_Actions_ShipThrottle = m_Actions.FindAction("ShipThrottle", throwIfNotFound: true);
         m_Actions_ShipSteering = m_Actions.FindAction("ShipSteering", throwIfNotFound: true);
     }
@@ -188,12 +209,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Actions
     private readonly InputActionMap m_Actions;
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
+    private readonly InputAction m_Actions_Camera;
     private readonly InputAction m_Actions_ShipThrottle;
     private readonly InputAction m_Actions_ShipSteering;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
         public ActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Camera => m_Wrapper.m_Actions_Camera;
         public InputAction @ShipThrottle => m_Wrapper.m_Actions_ShipThrottle;
         public InputAction @ShipSteering => m_Wrapper.m_Actions_ShipSteering;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
@@ -205,6 +228,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ActionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ActionsActionsCallbackInterfaces.Add(instance);
+            @Camera.started += instance.OnCamera;
+            @Camera.performed += instance.OnCamera;
+            @Camera.canceled += instance.OnCamera;
             @ShipThrottle.started += instance.OnShipThrottle;
             @ShipThrottle.performed += instance.OnShipThrottle;
             @ShipThrottle.canceled += instance.OnShipThrottle;
@@ -215,6 +241,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IActionsActions instance)
         {
+            @Camera.started -= instance.OnCamera;
+            @Camera.performed -= instance.OnCamera;
+            @Camera.canceled -= instance.OnCamera;
             @ShipThrottle.started -= instance.OnShipThrottle;
             @ShipThrottle.performed -= instance.OnShipThrottle;
             @ShipThrottle.canceled -= instance.OnShipThrottle;
@@ -240,6 +269,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public ActionsActions @Actions => new ActionsActions(this);
     public interface IActionsActions
     {
+        void OnCamera(InputAction.CallbackContext context);
         void OnShipThrottle(InputAction.CallbackContext context);
         void OnShipSteering(InputAction.CallbackContext context);
     }

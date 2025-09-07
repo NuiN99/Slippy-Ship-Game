@@ -6,6 +6,15 @@
             "id": "9c2640db-919d-4d0b-9f33-065d820a08c6",
             "actions": [
                 {
+                    "name": "Camera",
+                    "type": "Value",
+                    "id": "d6cc3da0-c795-455c-82f9-a6c7d0719c20",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ShipThrottle",
                     "type": "Value",
                     "id": "d65b3a7e-5311-4b08-a1bc-9491722983c5",
@@ -90,6 +99,17 @@
                     "action": "ShipSteering",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "da8a93c2-c4e4-4374-818b-33efea6f64a1",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
