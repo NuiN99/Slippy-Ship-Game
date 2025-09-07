@@ -1,3 +1,4 @@
+using NuiN.NExtensions;
 using UnityEngine;
 
 public class ShipEngine : MonoBehaviour
@@ -10,8 +11,8 @@ public class ShipEngine : MonoBehaviour
     [SerializeField] float adjustSteeringSpeed = 1f;
     [SerializeField] float passiveSteeringReturnSpeed = 3f;
 
-    public float CurrentThrottle { get; private set; }
-    public float CurrentSteerDirection { get; private set; }
+    [ShowInInspector] public float CurrentThrottle { get; private set; }
+    [ShowInInspector] public float CurrentSteerDirection { get; private set; }
 
     void Update()
     {
