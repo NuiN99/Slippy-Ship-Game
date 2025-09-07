@@ -152,7 +152,7 @@ Material:
     - _MaterialID: 1
     - _MaterialTypeMask: 2
     - _MetalnessIntensity: 1
-    - _NormalIntensity: 3
+    - _NormalIntensity: 0.5
     - _OpacityIntensity: 1
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
@@ -167,7 +167,7 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
     - _Rotateee: 0
-    - _RoughnessIntensity: 1.2
+    - _RoughnessIntensity: 0.29
     - _Sharp_Flicker: 0
     - _SrcBlend: 1
     - _StencilRef: 0
@@ -205,12 +205,12 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColorTint: {r: 0.1440459, g: 0.30741677, b: 0.3679245, a: 1}
+    - _BaseColorTint: {r: 0.14509805, g: 0.25232354, b: 0.36862746, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Emissive_Tint: {r: 1, g: 1, b: 1, a: 1}
     - _Sat_Bright_Cont: {r: 1, g: 1, b: 1, a: 1}
-    - _UV_Tiling: {r: 1, g: 1, b: 6, a: 0}
+    - _UV_Tiling: {r: 200, g: 200, b: 200, a: 200}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &4538021248918450134

@@ -7,11 +7,12 @@ public class ShipEngine : MonoBehaviour
     [Serializable]
     public struct Stats
     {
-        public float maxForce;
         public float engineWeight;
+        public float maxForce;
         public float maxTurnAngle;
         public float steeringSpeedMult;
         public float adjustThrottleSpeed;
+        public float passiveThrottleReturnSpeed;
         public float adjustSteeringSpeed;
         public float passiveSteeringReturnSpeed;
     } 
@@ -25,6 +26,7 @@ public class ShipEngine : MonoBehaviour
     void Update()
     {
         CurrentSteerDirection = Mathf.MoveTowards(CurrentSteerDirection, 0, stats.passiveSteeringReturnSpeed * Time.deltaTime);
+        CurrentThrottle = Mathf.MoveTowards(CurrentThrottle, 0, stats.passiveThrottleReturnSpeed * Time.deltaTime);
     }
 
     void FixedUpdate()
@@ -59,7 +61,7 @@ public class ShipEngine : MonoBehaviour
 
     public void AdjustThrottle(float direction, float deltaTime)
     {
-        CurrentThrottle += direction * stats.adjustThrottleSpeed * deltaTime;
+        CurrentThrottle += direction * (stats.adjustThrottleSpeed + stats.passiveThrottleReturnSpeed) * deltaTime;
         CurrentThrottle = Mathf.Clamp(CurrentThrottle, -1, 1);
     }
     
