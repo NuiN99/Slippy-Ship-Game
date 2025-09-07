@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using NuiN.NExtensions;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class BuoyancyPoint : MonoBehaviour
 {
     public static HashSet<BuoyancyPoint> BuoyancyPoints { get; private set; } = new();
@@ -20,5 +19,11 @@ public class BuoyancyPoint : MonoBehaviour
     public void AddForce(Vector3 force, ForceMode mode)
     {
         parentRB.AddForceAtPosition(force, transform.position, mode);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }
