@@ -31,8 +31,7 @@ public class WaterSurfaceZoneValueChanger : MonoBehaviour
     {
         var newData = waterZoneDatas[newZone].Data;
         
-        waterSurface.largeCurrentSpeedValue = newData.currentSpeed;
-        waterSurface.repetitionSize = newData.repetitionSize;
+        
 
         _valueChangeTween?.Stop();
         _valueChangeTween = SpleenTween.Value0To1(valueChangeTweenDuration, lerp =>
@@ -41,6 +40,9 @@ public class WaterSurfaceZoneValueChanger : MonoBehaviour
             waterSurface.largeWindSpeed = Mathf.LerpUnclamped(waterSurface.largeWindSpeed, newData.distantWindSpeed, lerp);
             waterSurface.largeBand1Multiplier = Mathf.LerpUnclamped(waterSurface.largeBand1Multiplier, newData.secondBandAmplitudeDimmer, lerp);
             waterSurface.ripplesWindSpeed = Mathf.LerpUnclamped(waterSurface.ripplesWindSpeed, newData.localWindSpeed, lerp);
+            
+            waterSurface.largeCurrentSpeedValue = Mathf.LerpUnclamped(waterSurface.largeCurrentSpeedValue, newData.currentSpeed, lerp);
+            waterSurface.repetitionSize = Mathf.LerpUnclamped(waterSurface.repetitionSize, newData.repetitionSize, lerp);
         }).SetEase(valueChangeTweenEase);
     }
 

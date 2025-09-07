@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentRB: {fileID: 1796995993}
-  maxForce: 20
+  maxForce: 10
   engineWeight: 1
   maxTurnAngle: 5
   adjustThrottleSpeed: 0.42
@@ -4970,8 +4970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSurface: {fileID: 1012425473}
-  waterDensity: 100
-  maxSubmergeDepth: 25
+  waterDensity: 200
+  maxSubmergeDepth: 100
   linearDrag: 5
   angularDrag: 25
   uprightTorqueStrength: 25

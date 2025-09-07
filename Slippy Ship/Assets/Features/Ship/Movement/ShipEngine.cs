@@ -39,7 +39,7 @@ public class ShipEngine : MonoBehaviour
     {
         if (Mathf.Approximately(CurrentSteerDirection, 0f)) return;
 
-        float torqueForce = maxForce * 0.75f * CurrentSteerDirection * (1 - Mathf.Abs(CurrentThrottle * 0.5f));
+        float torqueForce = maxForce * 0.25f * CurrentSteerDirection * (1 - Mathf.Abs(CurrentThrottle * 0.25f));
         const float leverArm = 2f;
 
         Vector3 leftPoint = transform.position - transform.right * leverArm;
