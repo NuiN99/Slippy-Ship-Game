@@ -57,7 +57,7 @@ public class PlayerInteraction : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         foreach (RaycastHit hit in hits)
         {
-            if (!hit.collider.TryGetComponent(out IInteractable interactable)) continue;
+            if (!hit.collider.TryGetComponent(out IInteractable interactable) || !interactable.IsInteractable) continue;
             if (Physics.Raycast(cameraTransform.position, VectorUtils.Direction(cameraTransform.position, hit.collider.transform.position), out RaycastHit losCheckHit))
             {
                 // hit something in line of sight (los)

@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class BaseInteractable : MonoBehaviour, IInteractable
 {
+    public virtual bool IsInteractable => true;
+    
     [SerializeField] Material hoverMaterial;
     [SerializeField] MeshRenderer[] renderers;
     
@@ -14,14 +16,14 @@ public class BaseInteractable : MonoBehaviour, IInteractable
         renderers = GetComponentsInChildren<MeshRenderer>();
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         foreach (var r in renderers)
         {
             _cachedMaterialReferences.Add(r, r.material);
         }
     }
-
+    
     public virtual void Interact()
     {
         Debug.Log("Interacted with " + name, this);
