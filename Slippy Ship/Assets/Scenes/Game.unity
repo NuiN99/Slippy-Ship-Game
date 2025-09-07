@@ -6889,9 +6889,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 442853758}
+  parentRB: {fileID: 1796995993}
   sensitivity: 0.1
   maxPitch: 75
   maxYaw: 150
+  pitchVelocityMultiplier: 0
+  rollVelocityMultiplier: 2
+  velocityDamping: 1
+  waveBobAmplitude: 2.5
+  waveBobFrequency: 1
 --- !u!1 &1834098929
 GameObject:
   m_ObjectHideFlags: 0
