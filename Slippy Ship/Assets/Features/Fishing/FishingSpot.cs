@@ -1,8 +1,11 @@
+using NuiN.NExtensions;
 using NuiN.SpleenTween;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class FishingSpot : MonoBehaviour
 {
+    [SerializeField] WaterDeformer waterDeformer;
     [SerializeField] Transform birdsRoot;
     [SerializeField] int minFish;
     [SerializeField] int maxFish;
@@ -43,9 +46,7 @@ public class FishingSpot : MonoBehaviour
             bird.localPosition = newLocalPos;
             _initialPositions[i] = newLocalPos;
             
-            Vector3 centerToBird = bird.localPosition;
-            Vector3 tangent = Vector3.Cross(Vector3.up, centerToBird).normalized;
-            bird.localRotation = Quaternion.LookRotation(tangent, Vector3.up);
+            bird.rotation = Quaternion.LookRotation(VectorUtils.Direction(bird.position, birdsRoot.position.With(y:0)));
         }
     }
 
@@ -122,6 +123,8 @@ public class FishingSpot : MonoBehaviour
 
     void TweenAndSpawnNew()
     {
+        waterDeformer.deepFoamDimmer = 0f;
+        waterDeformer.surfaceFoamDimmer = 0f;
         SpleenTween.AddPosAxis(transform, Axis.y, 250f, 5f).SetEase(Ease.InCubic).OnComplete(() =>
         {
             FishingManager.Instance.SpawnNewFishingSpot(Player.Instance.transform.position);

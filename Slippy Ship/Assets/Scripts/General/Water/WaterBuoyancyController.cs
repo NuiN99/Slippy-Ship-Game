@@ -1,4 +1,5 @@
 using System.Collections;
+using NuiN.NExtensions;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
@@ -71,13 +72,16 @@ public class WaterBuoyancyController : MonoBehaviour
         {
             return;
         }
-
+        
         float submergedRatio = Mathf.Clamp01(depth / maxSubmergeDepth);
 
         float displacedMass = submergedRatio * bp.EstimatedDisplacementVolume; 
         Vector3 buoyantForce = _sr.normalWS * (displacedMass * waterDensity);
-
         bp.AddForce(buoyantForce, ForceMode.Force);
+        
+        Vector3 swellCurrentVel = new Vector3(0, 0f, targetSurface.largeOrientationValue).normalized * targetSurface.largeCurrentSpeedValue;
+        Vector3 currentForce = swellCurrentVel * (waterDensity * submergedRatio * 0.01f);
+        bp.AddForce(currentForce, ForceMode.Force);
 
         Vector3 relVelocity = bp.ParentVelocity;
         Vector3 dragForce = -relVelocity * (linearDrag * submergedRatio);

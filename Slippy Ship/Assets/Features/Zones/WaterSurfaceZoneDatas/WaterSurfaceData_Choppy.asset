@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: WaterSurfaceData_Choppy
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
-    timeMultiplier: 1
+    timeMultiplier: 0.75
     distantWindSpeed: 100
-    currentSpeed: 0
+    currentSpeed: 12.5
     secondBandAmplitudeDimmer: 0.42
     localWindSpeed: 5
+    repetitionSize: 1000

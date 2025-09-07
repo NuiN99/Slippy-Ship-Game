@@ -12,6 +12,7 @@ public class WaterSurfaceZoneDataSO : ScriptableObject
         public float currentSpeed;
         public float secondBandAmplitudeDimmer;
         public float localWindSpeed;
+        public float repetitionSize;
     }
     
     [field: SerializeField] public WaterSurfaceZoneData Data { get; private set; }
