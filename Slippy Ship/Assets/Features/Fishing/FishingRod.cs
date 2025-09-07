@@ -46,10 +46,17 @@ public class FishingRod : BaseInteractable
     {
         while (true)
         {
+            if (FishingManager.Instance == null || !FishingManager.Instance.IsInFishingSpot)
+            {
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
+            
             yield return new WaitForSeconds(stats.catchInterval.Random());
             _fishIsHooked = true;
             yield return new WaitForSeconds(stats.onHookDuration);
             _fishIsHooked = false;
+            GameEvents.InvokeFishDepleted();
         }
     }
     
@@ -70,5 +77,6 @@ public class FishingRod : BaseInteractable
         Fish spawnedFish = Instantiate(fishPrefab, fishSpawnPoint.position, Random.rotation);
         
         spawnedFish.SetVelocity(boatRB != null ? boatRB.linearVelocity : Vector3.zero);
+        GameEvents.InvokeFishDepleted();
     }
 }

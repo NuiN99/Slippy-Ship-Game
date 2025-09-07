@@ -2,7 +2,7 @@ using System.Collections;
 using NuiN.NExtensions;
 using UnityEngine;
 
-public class Fish : BaseInteractable
+public class Fish : MonoBehaviour
 {
     [field: SerializeField] public int SellAmount { get; private set; } = 1;
 
@@ -19,9 +19,8 @@ public class Fish : BaseInteractable
     bool _isGrounded;
     Vector3 _groundNormal;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         _flopIntervalTimer = new Timer(flopInterval.Random());
 
         float scaleVariance = Random.Range(1 - fishScaleVariance, 1 + fishScaleVariance);

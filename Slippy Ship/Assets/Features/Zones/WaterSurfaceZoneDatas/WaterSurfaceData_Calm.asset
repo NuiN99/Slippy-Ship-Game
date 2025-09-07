@@ -16,5 +16,5 @@ MonoBehaviour:
     timeMultiplier: 1
     distantWindSpeed: 30
     currentSpeed: 0
-    secondBandAmplitudeDimmer: 0
-    localWindSpeed: 0
+    secondBandAmplitudeDimmer: 0.1
+    localWindSpeed: 0.1
