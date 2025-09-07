@@ -1478,12 +1478,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentRB: {fileID: 1796995993}
-  maxForce: 10
-  engineWeight: 1
-  maxTurnAngle: 5
-  adjustThrottleSpeed: 0.42
-  adjustSteeringSpeed: 1
-  passiveSteeringReturnSpeed: 0.5
+  stats:
+    maxForce: 10
+    engineWeight: 1
+    maxTurnAngle: 5
+    steeringSpeedMult: 0.25
+    adjustThrottleSpeed: 0.42
+    adjustSteeringSpeed: 1
+    passiveSteeringReturnSpeed: 0.5
 --- !u!1001 &242508548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5567,12 +5569,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentRB: {fileID: 1015866908}
-  maxForce: 20
-  engineWeight: 5
-  maxTurnAngle: 15
-  adjustThrottleSpeed: 1
-  adjustSteeringSpeed: 1
-  passiveSteeringReturnSpeed: 1
+  stats:
+    maxForce: 0
+    engineWeight: 0
+    maxTurnAngle: 0
+    steeringSpeedMult: 0
+    adjustThrottleSpeed: 0
+    adjustSteeringSpeed: 0
+    passiveSteeringReturnSpeed: 0
 --- !u!4 &1182533995
 Transform:
   m_ObjectHideFlags: 0
@@ -8709,10 +8713,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 234631411}
   - {fileID: 888812397}
   - {fileID: 424868866}
   - {fileID: 442853758}
-  - {fileID: 234631411}
   - {fileID: 1834098930}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8871,8 +8875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 1832999738}
-  normalColor: {r: 1, g: 1, b: 1, a: 0.39215687}
-  hoveringColor: {r: 1, g: 1, b: 1, a: 1}
+  normalColor: {r: 0.8392157, g: 0.8392157, b: 0.8392157, a: 0.5882353}
+  hoveringColor: {r: 1, g: 1, b: 1, a: 0.78431374}
   hoveringScaleMult: 2
 --- !u!1 &1834098929
 GameObject:
@@ -10578,18 +10582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 1851802845763355039, guid: e5c55855579c045429d2c1bf3d76ed19, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2843943873542331444, guid: e5c55855579c045429d2c1bf3d76ed19, type: 3}
       propertyPath: parentRB
       value: 
       objectReference: {fileID: 1796995993}
-    - target: {fileID: 7244107437407554786, guid: e5c55855579c045429d2c1bf3d76ed19, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 7568465081576655123, guid: e5c55855579c045429d2c1bf3d76ed19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

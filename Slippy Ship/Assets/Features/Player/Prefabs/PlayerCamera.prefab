@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7568465081576655123}
   - component: {fileID: 3265894599723560737}
   - component: {fileID: -3091886210936839112}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 8386633371715558032}
-  interactRadius: 1
+  interactRadius: 0.5
   interactRange: 250
 --- !u!114 &-3091886210936839112
 MonoBehaviour:
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 2229796830697214835}
   - component: {fileID: 293963267220774815}
   - component: {fileID: 2843943873542331444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

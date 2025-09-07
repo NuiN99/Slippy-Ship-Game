@@ -1,27 +1,35 @@
+using System;
 using NuiN.NExtensions;
 using UnityEngine;
 
 public class ShipEngine : MonoBehaviour
 {
+    [Serializable]
+    public struct Stats
+    {
+        public float maxForce;
+        public float engineWeight;
+        public float maxTurnAngle;
+        public float steeringSpeedMult;
+        public float adjustThrottleSpeed;
+        public float adjustSteeringSpeed;
+        public float passiveSteeringReturnSpeed;
+    } 
+    
     [SerializeField] Rigidbody parentRB;
-    [SerializeField] float maxForce = 20f;
-    [SerializeField] float engineWeight = 5f;
-    [SerializeField] float maxTurnAngle = 45f;
-    [SerializeField] float adjustThrottleSpeed = 1f;
-    [SerializeField] float adjustSteeringSpeed = 1f;
-    [SerializeField] float passiveSteeringReturnSpeed = 3f;
+    [SerializeField] Stats stats;
 
     [ShowInInspector] public float CurrentThrottle { get; private set; }
     [ShowInInspector] public float CurrentSteerDirection { get; private set; }
 
     void Update()
     {
-        CurrentSteerDirection = Mathf.MoveTowards(CurrentSteerDirection, 0, passiveSteeringReturnSpeed * Time.deltaTime);
+        CurrentSteerDirection = Mathf.MoveTowards(CurrentSteerDirection, 0, stats.passiveSteeringReturnSpeed * Time.deltaTime);
     }
 
     void FixedUpdate()
     {
-        parentRB.AddForceAtPosition(Vector3.down * engineWeight, transform.position, ForceMode.Force);
+        parentRB.AddForceAtPosition(Vector3.down * stats.engineWeight, transform.position, ForceMode.Force);
         
         if (!WaterBuoyancyController.Instance.IsSubmerged(transform.position, out float depth)) return;
         ApplyEngineForce();
@@ -30,8 +38,8 @@ public class ShipEngine : MonoBehaviour
 
     void ApplyEngineForce()
     {
-        float force = CurrentThrottle * maxForce;
-        Vector3 dir = Quaternion.AngleAxis(maxTurnAngle * -CurrentSteerDirection, transform.up) * transform.forward;
+        float force = CurrentThrottle * stats.maxForce;
+        Vector3 dir = Quaternion.AngleAxis(stats.maxTurnAngle * -CurrentSteerDirection, transform.up) * transform.forward;
         parentRB.AddForceAtPosition(dir * force, transform.position, ForceMode.Force);
     }
     
@@ -39,7 +47,7 @@ public class ShipEngine : MonoBehaviour
     {
         if (Mathf.Approximately(CurrentSteerDirection, 0f)) return;
 
-        float torqueForce = maxForce * 0.25f * CurrentSteerDirection * (1 - Mathf.Abs(CurrentThrottle * 0.25f));
+        float torqueForce = stats.maxForce * stats.steeringSpeedMult * CurrentSteerDirection * (1 - Mathf.Abs(CurrentThrottle * 0.25f));
         const float leverArm = 2f;
 
         Vector3 leftPoint = transform.position - transform.right * leverArm;
@@ -51,13 +59,13 @@ public class ShipEngine : MonoBehaviour
 
     public void AdjustThrottle(float direction, float deltaTime)
     {
-        CurrentThrottle += direction * adjustThrottleSpeed * deltaTime;
+        CurrentThrottle += direction * stats.adjustThrottleSpeed * deltaTime;
         CurrentThrottle = Mathf.Clamp(CurrentThrottle, -1, 1);
     }
     
     public void AdjustSteering(float direction, float deltaTime)
     {
-        CurrentSteerDirection += direction * (adjustSteeringSpeed + passiveSteeringReturnSpeed) * deltaTime;
+        CurrentSteerDirection += direction * (stats.adjustSteeringSpeed + stats.passiveSteeringReturnSpeed) * deltaTime;
         CurrentSteerDirection = Mathf.Clamp(CurrentSteerDirection, -1, 1);
     }
 

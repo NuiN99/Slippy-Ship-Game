@@ -36,9 +36,8 @@ public class FishingRod : BaseInteractable
     bool _fishIsHooked;
     float _initialRotZ;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         Initialize();
     }
     
