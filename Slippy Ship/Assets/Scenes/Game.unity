@@ -1794,8 +1794,8 @@ Transform:
   m_GameObject: {fileID: 485402735}
   serializedVersion: 2
   m_LocalRotation: {x: 0.51889163, y: 0.48036605, z: 0.51889163, w: 0.48036605}
-  m_LocalPosition: {x: 0.000076853314, y: 0.53, z: -3.7700005}
-  m_LocalScale: {x: 1.431825, y: 0.21644002, z: 4.241004}
+  m_LocalPosition: {x: 0.0001, y: 0.4773, z: -3.0871}
+  m_LocalScale: {x: 1.431825, y: 1.5863972, z: 3.7995155}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 524354380}
@@ -3352,6 +3352,7 @@ GameObject:
   - component: {fileID: 1012425474}
   - component: {fileID: 1012425473}
   - component: {fileID: 1012425475}
+  - component: {fileID: 1012425476}
   m_Layer: 0
   m_Name: Ocean
   m_TagString: Untagged
@@ -3502,12 +3503,12 @@ MonoBehaviour:
   repetitionSize: 500
   largeOrientationValue: 0
   largeWindSpeed: 30
-  largeChaos: 0.85
+  largeChaos: 1
   largeBand0Multiplier: 1
   largeBand0FadeMode: 1
   largeBand0FadeStart: 1500
   largeBand0FadeDistance: 3000
-  largeBand1Multiplier: 1
+  largeBand1Multiplier: 0
   largeBand1FadeMode: 1
   largeBand1FadeStart: 300
   largeBand1FadeDistance: 800
@@ -3558,6 +3559,27 @@ MonoBehaviour:
   linearDrag: 10
   angularDrag: 50
   uprightTorqueStrength: 1
+--- !u!114 &1012425476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012425472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18fc3d445ef91c4597ecd4d5e2d2df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterSurface: {fileID: 1012425473}
+  waterZoneDatas:
+    keys: 000000000100000002000000
+    values:
+    - {fileID: 11400000, guid: f5b8ab67982f48041a2cc32f1336ac10, type: 2}
+    - {fileID: 11400000, guid: a7c76fc6cafba824e9ca740665c91805, type: 2}
+    - {fileID: 11400000, guid: 76155afd7f3ae6d46890707ac996c240, type: 2}
+  valueChangeTweenDuration: 10
+  valueChangeTweenEase: 17
 --- !u!1 &1015866906
 GameObject:
   m_ObjectHideFlags: 0
@@ -6187,7 +6209,7 @@ Transform:
   m_GameObject: {fileID: 1688507801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.5, z: 146.6}
+  m_LocalPosition: {x: 0, y: 8.5, z: 107.3}
   m_LocalScale: {x: 300, y: 319.4727, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7382,7 +7404,7 @@ Transform:
   m_GameObject: {fileID: 1994634561}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.5, z: 253.7}
+  m_LocalPosition: {x: 0, y: 8.5, z: 159.4}
   m_LocalScale: {x: 300, y: 319.4727, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []

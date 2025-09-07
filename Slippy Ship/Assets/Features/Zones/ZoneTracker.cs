@@ -35,7 +35,6 @@ public class ZoneTracker : MonoBehaviour
     {
         if (CurrentZone == newZone) return;
         CurrentZone = newZone;
-        
         GameEvents.InvokeZoneChanged(newZone);
         Debug.Log("Changed zone: " + newZone);
     }
