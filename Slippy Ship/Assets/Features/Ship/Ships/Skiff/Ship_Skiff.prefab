@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &716033206683093592
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &949177934076051039
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &1925061358644280655
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &2588248930712077964
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &2939031328787589389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &2947514398768861613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &3190114611997381187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &3506057692774355015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &4074364758997134503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &4821350768309181242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,6 +1782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &4935779617748337162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2243,6 +2254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &5675337152263401255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &5853401287990637764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,6 +2647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &6127965867117366002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,6 +2749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &6130631413951385097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,6 +2851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &6208892415217424822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,6 +3345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &7720134159373669672
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,6 +3586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &7881181578189848552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &8236986808944057735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,6 +3896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &8250925155555822787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3978,6 +3998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentRB: {fileID: 3308181348318611111}
   <EstimatedDisplacementVolume>k__BackingField: 0.5
+  <AffectedByCurrent>k__BackingField: 1
 --- !u!1 &8496038420913909893
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +4626,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1901311141135808471, guid: 9f7bf6b1b82d635408bc308efc089d9f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f7bf6b1b82d635408bc308efc089d9f, type: 3}

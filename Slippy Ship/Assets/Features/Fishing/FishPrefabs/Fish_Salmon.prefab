@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5264902940921716851}
   - component: {fileID: 7672118611387986375}
   - component: {fileID: 3902146753893848195}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fish_Salmon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2869166919589025969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TailPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228043528924208587}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae51ad94fa7d3764d957aa512d506d00, type: 3}
       propertyPath: m_Name
       value: FishV3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae51ad94fa7d3764d957aa512d506d00, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

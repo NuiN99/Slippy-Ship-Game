@@ -72,4 +72,10 @@ public class Fish : MonoBehaviour
     {
         rb.linearVelocity = vel;
     }
+
+    public void SetKinematic()
+    {
+        rb.isKinematic = true;
+        rb.detectCollisions = false;
+    }
 }

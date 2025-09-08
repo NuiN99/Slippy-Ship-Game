@@ -10,6 +10,8 @@ public class BuoyancyPoint : MonoBehaviour
     [Tooltip("Estimated displacement volume for this point (m^3). Used for buoyancy calculation.")]
     [field: SerializeField] public float EstimatedDisplacementVolume { get; private set; } = 0.5f;
 
+    [field: SerializeField] public bool AffectedByCurrent { get; private set; } = true;
+
     public Vector3 ParentVelocity => parentRB.linearVelocity;
     public Rigidbody ParentRB => parentRB;
 
