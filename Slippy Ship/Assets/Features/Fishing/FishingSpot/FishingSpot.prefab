@@ -141,8 +141,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5480860842862860563}
   - component: {fileID: 295916776866555400}
-  - component: {fileID: 1397830223966125200}
   - component: {fileID: 2125396598567865523}
+  - component: {fileID: 274705701587169077}
   m_Layer: 0
   m_Name: FishingSpot
   m_TagString: Untagged
@@ -200,27 +200,6 @@ MonoBehaviour:
   range: {x: 0, y: 1}
   texture: {fileID: 0}
   version: 1
---- !u!135 &1397830223966125200
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4574865677769818708}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 55
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 35
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2125396598567865523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +222,29 @@ MonoBehaviour:
   birdSpawnRadius: 50
   birdMinHeight: 0
   birdMaxHeight: 10
+--- !u!136 &274705701587169077
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574865677769818708}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 35
+  m_Height: 200
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &37976941306499841
 PrefabInstance:
   m_ObjectHideFlags: 0
