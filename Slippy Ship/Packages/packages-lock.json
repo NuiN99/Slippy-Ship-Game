@@ -8,7 +8,7 @@
         "com.unity.textmeshpro": "3.0.8",
         "com.unity.inputsystem": "1.11.1"
       },
-      "hash": "0c6168b02d36648f9e2d2437ffcb246d4d9bfc1c"
+      "hash": "954007ccbbf5dda42678171bb3c2ade9e1d6c10e"
     },
     "com.singularitygroup.hotreload": {
       "version": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.13.11",

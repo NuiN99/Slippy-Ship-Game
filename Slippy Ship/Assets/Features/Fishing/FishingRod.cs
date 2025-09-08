@@ -1,51 +1,50 @@
 using System;
 using System.Collections;
 using NuiN.NExtensions;
+using NuiN.SpleenTween;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FishingRod : BaseInteractable
+public class FishingRod : MonoBehaviour
 {
     [Serializable]
     public struct Stats
     {
         public float onHookDuration;
         public FloatRange catchInterval;
-        public int minFish;
-        public int maxFish;
+        public IntRange catchAmount;
 
-        public Stats(float onHookDuration, FloatRange catchInterval, int minFish, int maxFish)
+        public Stats(float onHookDuration, FloatRange catchInterval, IntRange catchAmount)
         {
             this.onHookDuration = onHookDuration;
             this.catchInterval = catchInterval;
-            this.minFish = minFish;
-            this.maxFish = maxFish;
+            this.catchAmount = catchAmount;
         }
     }
 
-    public override bool IsInteractable => _fishIsHooked;
-
     [SerializeField] Rigidbody boatRB;
-    [SerializeField] GameObject hookedObj;
+    //[SerializeField] GameObject hookedObj;
     [SerializeField] Transform fishSpawnPoint;
     [SerializeField] float normalFishRotZ;
     [SerializeField] float hookedFishRotZ;
-    [SerializeField] Stats stats;
+    public Stats stats;
         
     Coroutine _fishingRoutine;
     bool _fishIsHooked;
     float _initialRotZ;
+    Quaternion _initialRotation;
+
+    ITween _rotTween;
 
     protected void Awake()
     {
+        _initialRotation = transform.localRotation;
         Initialize();
     }
     
     public void Initialize()
     {
-        _fishIsHooked = false;
-        hookedObj.SetActive(false);
-        transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
+        SetHooked(false);
         
         this.StopCoroutineSafe(_fishingRoutine);
         _fishingRoutine = StartCoroutine(FishingRoutine());
@@ -62,35 +61,18 @@ public class FishingRod : BaseInteractable
             }
             
             yield return new WaitForSeconds(stats.catchInterval.Random());
-            _fishIsHooked = true;
-            transform.localRotation = transform.localRotation.With(z: hookedFishRotZ);
-            hookedObj.SetActive(true);
+            SetHooked(true);
             
             yield return new WaitForSeconds(stats.onHookDuration);
-            _fishIsHooked = false;
-            hookedObj.SetActive(false);
-            transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
+            SetHooked(false);
             
             GameEvents.InvokeFishDepleted();
         }
     }
-    
-
-    public override void Interact()
-    {
-        base.Interact();
-        _fishIsHooked = false;
-        hookedObj.SetActive(false);
-        SpawnFish();
-        transform.localRotation = transform.localRotation.With(z: normalFishRotZ);
-        
-        this.StopCoroutineSafe(_fishingRoutine);
-        _fishingRoutine = StartCoroutine(FishingRoutine());
-    }
 
     void SpawnFish()
     {
-        int numFish = Random.Range(stats.minFish, stats.maxFish + 1);
+        int numFish = stats.catchAmount.Random();
 
         for (int i = 0; i < numFish; i++)
         {
@@ -100,5 +82,20 @@ public class FishingRod : BaseInteractable
         }
         
         GameEvents.InvokeFishDepleted();
+    }
+    
+    void SetHooked(bool hooked)
+    {
+        _fishIsHooked = hooked;
+
+        _rotTween?.Stop();
+
+        Quaternion targetEuler = _initialRotation * Quaternion.Euler(0, 0, hooked ? hookedFishRotZ : normalFishRotZ);
+        _rotTween = SpleenTween.LocalRot(transform, transform.localRotation, targetEuler, hooked ? 0.1f : 0.25f).SetEase(hooked ? Ease.OutCubic : Ease.InCubic);
+
+        if (hooked)
+        {
+            _rotTween.OnComplete(SpawnFish);
+        }
     }
 }

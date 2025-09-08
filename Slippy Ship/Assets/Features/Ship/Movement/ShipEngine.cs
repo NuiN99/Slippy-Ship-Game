@@ -18,7 +18,7 @@ public class ShipEngine : MonoBehaviour
     } 
     
     [SerializeField] Rigidbody parentRB;
-    [SerializeField] Stats stats;
+    public Stats stats;
 
     [ShowInInspector] public float CurrentThrottle { get; private set; }
     [ShowInInspector] public float CurrentSteerDirection { get; private set; }
