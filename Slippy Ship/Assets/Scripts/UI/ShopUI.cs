@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
 {
     [SerializeField] GameObject root;
     [SerializeField] GameObject popupRoot;
 
-    bool _wasInShopArea;
+    [SerializeField] Button skiffButton;
+    [SerializeField] Button sailboatButton;
 
+    bool _wasInShopArea;
+    
     void Start()
     {
         SetShopOpen(false);
@@ -17,12 +21,18 @@ public class ShopUI : MonoBehaviour
     {
         PlayerInputManager.Controls.MenuActions.OpenShop.performed += TryOpenShop;
         PlayerInputManager.Controls.MenuActions.CloseMenu.performed += TryCloseShop;
+        
+        skiffButton.onClick.AddListener(() => FleetUpgradesManager.Instance.SwitchToShip(ShipType.Skiff));
+        sailboatButton.onClick.AddListener(() => FleetUpgradesManager.Instance.SwitchToShip(ShipType.Sailboat));
     }
 
     void OnDisable()
     {
         PlayerInputManager.Controls.MenuActions.OpenShop.performed -= TryOpenShop;
         PlayerInputManager.Controls.MenuActions.CloseMenu.performed -= TryCloseShop;
+        
+        skiffButton.onClick.RemoveAllListeners();
+        sailboatButton.onClick.RemoveAllListeners();
     }
 
     void TryOpenShop(InputAction.CallbackContext ctx)

@@ -16,6 +16,8 @@ public class FleetUpgradesManager : MonoBehaviour
     
     Dictionary<ShipType, ShipUpgradeLevels> _shipUpgradeLevels = new();
     Dictionary<ShipType, Dictionary<int, ShipStats>> _levelToShipStats = new();
+    
+    ShipType _shipType = ShipType.Skiff;
 
     void Awake()
     {
@@ -76,5 +78,27 @@ public class FleetUpgradesManager : MonoBehaviour
             
             ship.SetStats(stats);
         }
+    }
+
+    public void SwitchToShip(ShipType shipType)
+    {
+        if (_shipType == shipType) return;
+
+        ShipUpgrader newShip = fleet[shipType];
+        ShipUpgrader oldShip = fleet[_shipType];
+
+        _shipType = shipType;
+        
+        newShip.gameObject.SetActive(true);
+        oldShip.gameObject.SetActive(false);
+
+        Rigidbody newShipRB = newShip.GetComponent<Rigidbody>();
+        Rigidbody oldShipRB = oldShip.GetComponent<Rigidbody>();
+
+        newShipRB.linearVelocity = Vector3.zero;
+        newShipRB.angularVelocity = Vector3.zero;
+        
+        newShipRB.position = oldShipRB.position;
+        newShip.transform.position = oldShip.transform.position;
     }
 }

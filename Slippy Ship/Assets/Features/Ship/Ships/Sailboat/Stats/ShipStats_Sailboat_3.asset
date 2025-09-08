@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: ShipStats_Sailboat_3
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
-    numRods: 4
+    numRods: 8
     catchAmount:
-      <Min>k__BackingField: 1
-      <Max>k__BackingField: 4
+      <Min>k__BackingField: 9
+      <Max>k__BackingField: 10
     catchInterval:
-      <Min>k__BackingField: 2
-      <Max>k__BackingField: 3
-    stability: 10
-    turningAccel: 1.25
-    turningForce: 1
-    throttleForce: 20
-    throttleAccel: 1.25
+      <Min>k__BackingField: 0.2
+      <Max>k__BackingField: 0.3
+    stability: 22.5
+    turningAccel: 2
+    turningForce: 3
+    throttleForce: 100
+    throttleAccel: 3

@@ -14,19 +14,9 @@ public class PlayerInteraction : MonoBehaviour
 
     IInteractable _hoveredInteractable;
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
     void OnEnable()
     {
+        Instance = this;
         PlayerInputManager.Controls.Actions.Interact.performed += OnInteractPressed_Callback;
     }
 
