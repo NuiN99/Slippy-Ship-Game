@@ -93,7 +93,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0341, y: 2.0341, z: 2.0341}
+  m_LocalScale: {x: 1.75, y: 1.75, z: 1.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 84494951700089166}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c339b37fbf747eeae3306fef982a8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SellAmount>k__BackingField: 30
+  <SellAmount>k__BackingField: 50
   rb: {fileID: 6291368785975882583}
   flopDuration:
     <Min>k__BackingField: 1
@@ -154,7 +154,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8703197905856366191}
   serializedVersion: 4
-  m_Mass: 0.025
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

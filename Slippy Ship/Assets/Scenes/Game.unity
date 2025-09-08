@@ -27242,7 +27242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2d7bbb76cc4c9a96db353192d89149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCurrency: 10094
+  startingCurrency: 100
 --- !u!4 &889916828
 Transform:
   m_ObjectHideFlags: 0
@@ -60834,6 +60834,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1030984168, guid: abc00000000016084636267239878482, type: 3}
   m_PrefabInstance: {fileID: 1913295991}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1913605170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913605171}
+  - component: {fileID: 1913605172}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1913605171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913605170}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2103536520}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1913605172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913605170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3068da9845d676940b14bdd38e569b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+    eventReference:
+      Guid:
+        Data1: -1203018431
+        Data2: 1216859796
+        Data3: 1554892980
+        Data4: 957776269
+      Path: event:/Music_Zones
 --- !u!1001 &1914015891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68224,6 +68276,7 @@ Transform:
   m_Children:
   - {fileID: 1000369131}
   - {fileID: 1221892523}
+  - {fileID: 1913605171}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2106503807

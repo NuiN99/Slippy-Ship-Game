@@ -23,5 +23,5 @@ MonoBehaviour:
     stability: 50
     turningAccel: 1.25
     turningForce: 0.5
-    throttleForce: 50
+    throttleForce: 100
     throttleAccel: 1.25
