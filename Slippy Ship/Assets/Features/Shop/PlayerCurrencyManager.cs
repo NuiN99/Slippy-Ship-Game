@@ -27,8 +27,10 @@ public class PlayerCurrencyManager : MonoBehaviour
 
     public bool TryBuyItem(int cost)
     {
-        if (Currency < cost) return false;
+        if(!CanAfford(cost)) return false;
         Currency -= cost;
         return true;
     }
+
+    public bool CanAfford(int cost) => Currency >= cost;
 }

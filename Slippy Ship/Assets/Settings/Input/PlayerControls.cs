@@ -220,6 +220,54 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuActions"",
+            ""id"": ""d1a447f5-30ac-4449-aaae-d5df02b23a4d"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d69e18b-ec9d-4039-8ea7-aad75388a223"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2dfa7fa-aadc-4631-ba4b-fe030064728d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1ff83ce3-42a5-4c71-aef8-20b45a9e76c1"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d889a3f6-a409-42cb-8d38-2a34d10ecf57"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -230,11 +278,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Actions_ShipThrottle = m_Actions.FindAction("ShipThrottle", throwIfNotFound: true);
         m_Actions_ShipSteering = m_Actions.FindAction("ShipSteering", throwIfNotFound: true);
         m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
+        // MenuActions
+        m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
+        m_MenuActions_OpenShop = m_MenuActions.FindAction("OpenShop", throwIfNotFound: true);
+        m_MenuActions_CloseMenu = m_MenuActions.FindAction("CloseMenu", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Actions.enabled, "This will cause a leak and performance issues, PlayerControls.Actions.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_MenuActions.enabled, "This will cause a leak and performance issues, PlayerControls.MenuActions.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -362,11 +415,70 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public ActionsActions @Actions => new ActionsActions(this);
+
+    // MenuActions
+    private readonly InputActionMap m_MenuActions;
+    private List<IMenuActionsActions> m_MenuActionsActionsCallbackInterfaces = new List<IMenuActionsActions>();
+    private readonly InputAction m_MenuActions_OpenShop;
+    private readonly InputAction m_MenuActions_CloseMenu;
+    public struct MenuActionsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MenuActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenShop => m_Wrapper.m_MenuActions_OpenShop;
+        public InputAction @CloseMenu => m_Wrapper.m_MenuActions_CloseMenu;
+        public InputActionMap Get() { return m_Wrapper.m_MenuActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActionsActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuActionsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuActionsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuActionsActionsCallbackInterfaces.Add(instance);
+            @OpenShop.started += instance.OnOpenShop;
+            @OpenShop.performed += instance.OnOpenShop;
+            @OpenShop.canceled += instance.OnOpenShop;
+            @CloseMenu.started += instance.OnCloseMenu;
+            @CloseMenu.performed += instance.OnCloseMenu;
+            @CloseMenu.canceled += instance.OnCloseMenu;
+        }
+
+        private void UnregisterCallbacks(IMenuActionsActions instance)
+        {
+            @OpenShop.started -= instance.OnOpenShop;
+            @OpenShop.performed -= instance.OnOpenShop;
+            @OpenShop.canceled -= instance.OnOpenShop;
+            @CloseMenu.started -= instance.OnCloseMenu;
+            @CloseMenu.performed -= instance.OnCloseMenu;
+            @CloseMenu.canceled -= instance.OnCloseMenu;
+        }
+
+        public void RemoveCallbacks(IMenuActionsActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuActionsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuActionsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuActionsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuActionsActions @MenuActions => new MenuActionsActions(this);
     public interface IActionsActions
     {
         void OnCamera(InputAction.CallbackContext context);
         void OnShipThrottle(InputAction.CallbackContext context);
         void OnShipSteering(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IMenuActionsActions
+    {
+        void OnOpenShop(InputAction.CallbackContext context);
+        void OnCloseMenu(InputAction.CallbackContext context);
     }
 }
