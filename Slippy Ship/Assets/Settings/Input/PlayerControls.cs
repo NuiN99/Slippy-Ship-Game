@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetShip"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f7173d1-2609-4d64-ae40-170962044483"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -218,6 +227,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""717bd32d-421c-4d0f-8608-8b7fb1a031ef"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -278,6 +298,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Actions_ShipThrottle = m_Actions.FindAction("ShipThrottle", throwIfNotFound: true);
         m_Actions_ShipSteering = m_Actions.FindAction("ShipSteering", throwIfNotFound: true);
         m_Actions_Interact = m_Actions.FindAction("Interact", throwIfNotFound: true);
+        m_Actions_ResetShip = m_Actions.FindAction("ResetShip", throwIfNotFound: true);
         // MenuActions
         m_MenuActions = asset.FindActionMap("MenuActions", throwIfNotFound: true);
         m_MenuActions_OpenShop = m_MenuActions.FindAction("OpenShop", throwIfNotFound: true);
@@ -353,6 +374,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Actions_ShipThrottle;
     private readonly InputAction m_Actions_ShipSteering;
     private readonly InputAction m_Actions_Interact;
+    private readonly InputAction m_Actions_ResetShip;
     public struct ActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -361,6 +383,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ShipThrottle => m_Wrapper.m_Actions_ShipThrottle;
         public InputAction @ShipSteering => m_Wrapper.m_Actions_ShipSteering;
         public InputAction @Interact => m_Wrapper.m_Actions_Interact;
+        public InputAction @ResetShip => m_Wrapper.m_Actions_ResetShip;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -382,6 +405,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @ResetShip.started += instance.OnResetShip;
+            @ResetShip.performed += instance.OnResetShip;
+            @ResetShip.canceled += instance.OnResetShip;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -398,6 +424,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @ResetShip.started -= instance.OnResetShip;
+            @ResetShip.performed -= instance.OnResetShip;
+            @ResetShip.canceled -= instance.OnResetShip;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -475,6 +504,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnShipThrottle(InputAction.CallbackContext context);
         void OnShipSteering(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnResetShip(InputAction.CallbackContext context);
     }
     public interface IMenuActionsActions
     {

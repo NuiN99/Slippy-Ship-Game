@@ -13,6 +13,8 @@ public class FleetUpgradesManager : MonoBehaviour
     [SerializeField] EnumDictionary<ShipType, ShipStatsSO> shipStatsLvl1;
     [SerializeField] EnumDictionary<ShipType, ShipStatsSO> shipStatsLvl2;
     [SerializeField] EnumDictionary<ShipType, ShipStatsSO> shipStatsLvl3;
+
+    [SerializeField] Transform shipResetPos;
     
     Dictionary<ShipType, ShipUpgradeLevels> _shipUpgradeLevels = new();
     Dictionary<ShipType, Dictionary<int, ShipStats>> _levelToShipStats = new();
@@ -102,5 +104,16 @@ public class FleetUpgradesManager : MonoBehaviour
         
         newShipRB.position = oldShipRB.position;
         newShip.transform.position = oldShip.transform.position;
+    }
+
+    public void ResetShip()
+    {
+        ShipUpgrader ship = fleet[_shipType];
+
+        Rigidbody shipRB = ship.GetComponent<Rigidbody>();
+        shipRB.position = shipResetPos.position;
+        shipRB.rotation = shipResetPos.rotation;
+        shipRB.linearVelocity = Vector3.zero;
+        shipRB.angularVelocity = Vector3.zero;
     }
 }
