@@ -97,6 +97,8 @@ public class FleetUpgradesManager : MonoBehaviour
 
         newShipRB.linearVelocity = Vector3.zero;
         newShipRB.angularVelocity = Vector3.zero;
+        newShipRB.rotation = oldShipRB.rotation;
+        newShip.transform.rotation = oldShip.transform.rotation;
         
         newShipRB.position = oldShipRB.position;
         newShip.transform.position = oldShip.transform.position;

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c339b37fbf747eeae3306fef982a8a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SellAmount>k__BackingField: 20
+  <SellAmount>k__BackingField: 30
   rb: {fileID: 6291368785975882583}
   flopDuration:
     <Min>k__BackingField: 1

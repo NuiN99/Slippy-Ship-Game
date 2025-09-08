@@ -60,13 +60,11 @@ public class FishingRod : MonoBehaviour
                 continue;
             }
             
-            yield return new WaitForSeconds(stats.catchInterval.Random());
             SetHooked(true);
-            
             yield return new WaitForSeconds(stats.onHookDuration);
             SetHooked(false);
             
-            GameEvents.InvokeFishDepleted();
+            yield return new WaitForSeconds(stats.catchInterval.Random());
         }
     }
 

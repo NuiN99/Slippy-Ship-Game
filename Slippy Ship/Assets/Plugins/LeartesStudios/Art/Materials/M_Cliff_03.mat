@@ -165,7 +165,7 @@ Material:
     - _MaterialID: 1
     - _MaterialTypeMask: 2
     - _MetalnessIntensity: 1
-    - _NormalIntensity: 1
+    - _NormalIntensity: 0.5
     - _OpacityIntensity: 1
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
@@ -179,7 +179,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _RoughnessIntensity: 1
+    - _RoughnessIntensity: 0.25
     - _Sharp_Flicker: 0
     - _SrcBlend: 1
     - _StencilRef: 0
@@ -217,7 +217,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColorTint: {r: 0, g: 0.2, b: 0.0333333, a: 1}
+    - _BaseColorTint: {r: 0.019446416, g: 0.21698111, b: 0.16991456, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Emissive_Tint: {r: 1, g: 1, b: 1, a: 1}
