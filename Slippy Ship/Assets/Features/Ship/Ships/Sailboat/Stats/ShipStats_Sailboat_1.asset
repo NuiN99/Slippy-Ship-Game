@@ -22,6 +22,6 @@ MonoBehaviour:
       <Max>k__BackingField: 2.5
     stability: 65
     turningAccel: 1.5
-    turningForce: 2.25
-    throttleForce: 35
+    turningForce: 0.75
+    throttleForce: 80
     throttleAccel: 1.5

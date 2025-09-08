@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 383186822765888790}
   - component: {fileID: 891356601856758643}
   - component: {fileID: 2605407750536138742}
-  - component: {fileID: 9043694717840882964}
+  - component: {fileID: 5607755480687662069}
   m_Layer: 8
   m_Name: Fish_Shark
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8031859525695929191}
@@ -122,8 +122,8 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &9043694717840882964
-CapsuleCollider:
+--- !u!65 &5607755480687662069
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -140,10 +140,8 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.18
-  m_Height: 1.27
-  m_Direction: 2
+  serializedVersion: 3
+  m_Size: {x: 0.16, y: 0.13, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4388565683778825121
 GameObject:
