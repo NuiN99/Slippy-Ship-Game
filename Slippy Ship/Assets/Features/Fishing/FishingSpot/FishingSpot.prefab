@@ -235,8 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterDeformer: {fileID: 295916776866555400}
   birdsRoot: {fileID: 7737556917011269966}
-  minFish: 3
-  maxFish: 7
+  minFish: 2
+  maxFish: 4
   birdsCirclingSpeed: 25
   birdsBobbingSpeed: 2.5
   birdsBobbingHeight: 2
