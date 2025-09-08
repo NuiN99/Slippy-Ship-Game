@@ -20,7 +20,7 @@ MonoBehaviour:
     catchInterval:
       <Min>k__BackingField: 1
       <Max>k__BackingField: 1.5
-    stability: 20
+    stability: 80
     turningAccel: 1.75
     turningForce: 2.5
     throttleForce: 40
