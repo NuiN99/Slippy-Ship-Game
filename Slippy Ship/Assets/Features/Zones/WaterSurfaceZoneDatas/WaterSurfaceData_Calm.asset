@@ -15,7 +15,7 @@ MonoBehaviour:
   <Data>k__BackingField:
     timeMultiplier: 1
     distantWindSpeed: 30
-    currentSpeed: 5
+    currentSpeed: 0
     secondBandAmplitudeDimmer: 0.1
     localWindSpeed: 0.1
     repetitionSize: 500
